@@ -38,6 +38,8 @@ var TmpCountryMap map[string]Country
 
 func main() {
 
+	go GetUpdate()
+
 	http.HandleFunc("/ip", func (w http.ResponseWriter, r *http.Request) {
 		values := r.URL.Query()
 		ip := values.Get("address")
