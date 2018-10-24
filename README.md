@@ -13,7 +13,7 @@ Check progress through /health endpoint and if IP's is equal to 221 it is ready
 
 `<Your Server DNS>/update`
 
-## Example Endpoint
+## Example Request
 `<Your Server DNS>/ip?address=198.60.227.255`
   
 ## Example Response 
