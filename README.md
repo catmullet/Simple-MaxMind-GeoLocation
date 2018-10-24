@@ -9,6 +9,10 @@ Geo location based on ip address.  Simple one file Geo location Golang API
 
 Check progress through /health endpoint and if IP's is equal to 221 it is ready
 
+## Update IP's
+
+`<Your Server DNS>/update`
+
 ## Example Endpoint
 `<Your Server DNS>/ip?address=198.60.227.255`
   
