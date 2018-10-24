@@ -27,6 +27,11 @@ type Country struct {
 	TimeZone	string `json:"time_zone"`
 }
 
+type UpdateResponse struct {
+	Status string `json:"status"`
+	TotalIPs int `json:"total_ips"`
+}
+
 var IPMap map[string]Country
 var IPMapList map[string][]string
 var TmpCountryMap map[string]Country
@@ -55,19 +60,25 @@ func main() {
 
 		go GetUpdate()
 
-		w.Header().Set("Content-Type", "application/text")
+		w.Header().Set("Content-Type", "application/json")
 
-		fmt.Fprintf(w, "OK")
+		response := UpdateResponse{Status:"OK", TotalIPs: len(IPMapList)}
+
+		resp, _ := json.Marshal(response)
+
+		fmt.Fprintf(w, string(resp))
 
 	})
 
 	http.HandleFunc("/health", func (w http.ResponseWriter, r *http.Request) {
 
-		go GetUpdate()
+		w.Header().Set("Content-Type", "application/json")
 
-		w.Header().Set("Content-Type", "application/text")
+		response := UpdateResponse{Status:"OK", TotalIPs: len(IPMapList)}
 
-		fmt.Fprintf(w, "OK")
+		resp, _ := json.Marshal(response)
+
+		fmt.Fprintf(w, string(resp))
 
 	})
 
